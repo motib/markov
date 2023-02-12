@@ -1,0 +1,64 @@
+% !TeX root = prob.tex
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+
+\begin{center}
+\textbf{\LARGE Probability Simulations}
+
+\bigskip
+\bigskip
+\bigskip
+
+\textbf{\Large Moti Ben-Ari}
+
+\bigskip
+
+\url{http://www.weizmann.ac.il/sci-tea/benari/}
+
+\bigskip
+\bigskip
+\bigskip
+
+%Version $1.1$
+%
+%\bigskip
+
+\today
+
+\end{center}
+
+\vfill
+
+\begin{center}
+\copyright{} Moti Ben-Ari $2023$
+ \end{center}
+ 
+\begin{small}
+This work is licensed under Attribution-ShareAlike 4.0 International. To view a copy of this license, visit \url{http://creativecommons.org/licenses/by-sa/4.0/}.
+\end{small}
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\begin{center}
+\textbf{\LARGE Introduction}
+\end{center}
+
+\addcontentsline{toc}{section}{\large Introduction}
+
+\bigskip
+
+Simulations are an excellent way of understanding probability, especially, the behavior of process of long duration. These programs enable the user to perform experiments by varying the parameters of problems and analyzing the results, both printed and displayed in graphs.
+
+The programs are written in the Python 3 language and use the \verb+matplotlib+ to generate the graphs. Parameters directly related to the problems, such as the probability of success, can be modified interactively. Others, related to the simulation, such as the number of steps in a simulation and the properties of the histograms, are defined in a module \verb+configuration.py+ that can be modified.
+
+You need to install the Python (\url{https://www.python.org/downloads/}) although a knowledge of Python programming is not necessary.
+
+A level of knowledge of probability equivalent to the first few chapters or \cite{BW} or \cite{ross} is assumed.
+
+Section~\ref{s.gamblers} presents the \emph{Gambler's ruin problem}. Two players $A$ and $B$ divide a finite capital (amount of money between them) and they play a game in which $A$ probability of winning is $p$ and $B$'s is $1-p$. The loser gives one unit to the winner. The questions are: Given initial parameters, what is the probability that $A$ wins? What is the expectation of the duration of the game?
+
