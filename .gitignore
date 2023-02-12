@@ -1,0 +1,16 @@
+﻿conditional
+*.pyc
+*.json
+*.bat
+*.zip
+*~
+*.aux
+*.log
+*.auxlock
+*.bbl
+*.blg
+*.synctex.gz
+*.toc
+*.pdf
+*.txt
+*.out
