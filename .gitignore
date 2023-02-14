@@ -1,4 +1,5 @@
 ﻿conditional
+docs/*.pdf
 *.pyc
 *.json
 *.bat
@@ -11,6 +12,4 @@
 *.blg
 *.synctex.gz
 *.toc
-*.pdf
 *.txt
-*.out
