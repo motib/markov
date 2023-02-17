@@ -12,18 +12,31 @@
 
 % TikZ package
 \usepackage{tikz}
-
+%
 % Reduce space around c column in eqnarray*
-\newenvironment{eqn}
-  {\addtolength{\arraycolsep}{-3pt}
-   \begin{eqnarray*}}
-  {\end{eqnarray*}}
-
+%\newenvironment{eqn}
+%  {\addtolength{\arraycolsep}{-3pt}
+%   \begin{eqnarray*}}
+%  {\end{eqnarray*}}
+%
 % Reduce space around c column in eqnarray with labels
-\newenvironment{eqnlabels}
-  {\addtolength{\arraycolsep}{-3pt}
-   \begin{eqnarray}}
-  {\end{eqnarray}}
+%\newenvironment{eqnlabels}
+%  {\addtolength{\arraycolsep}{-3pt}
+%   \begin{eqnarray}}
+%  {\end{eqnarray}}
+
+% Displaystyle for fractions and combinations
+\newcommand*{\disfrac}[2]{\displaystyle\frac{#1}{#2}}
+\newcommand*{\dischoose}[2]{\displaystyle{#1 \choose #2}}
+
+% Alter some LaTeX defaults for better treatment of figures
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\setcounter{topnumber}{1}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{3}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.7}
 
 % Layout
 \textwidth=150mm
@@ -37,12 +50,13 @@
 \renewcommand{\baselinestretch}{1.1}
 \setlength{\parskip}{0.3\baselineskip plus 1pt minus 1pt}
 
-%\includeonly{prob-ruin}
+%\includeonly{prob-walk}
 
 \begin{document}
 
 \include{prob-intro}
 \include{prob-ruin}
+\include{prob-walk}
 \include{prob-bib}
 
 \end{document}

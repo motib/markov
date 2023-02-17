@@ -2,12 +2,11 @@
 
 \section{Gambler's Ruin}\label{s.gamblers}
 
-\textbf{Problem} Two players $A$ and $B$ compete in a contest. There is an initial finite capital of $n$ units: $A$ has $i$ and $B$ has $n-i$. They repeated play a game such that the probability that $A$ wins is $p$ and the probability that $B$ wins is $q=1-p$. The loser gives one unit to the winner. When one player has $n$ units the contest is finished.
+\textbf{Problem} Two players $A$ and $B$ compete in a contest. There is an initial finite capital of $n$ units: $A$ has $i$ and $B$ has $n-i$. They repeatedly play a game where the probability that $A$ wins is $p$ and the probability that $B$ wins is $q=1-p$. The loser gives one unit to the winner. When one player has all $n$ units the contest is finished.
 \begin{enumerate}
 \item Given initial parameters $(p, n, i)$, what is the probability that $A$ wins?
-\item What is the expectation of the duration of the game?
+\item What is the expected duration of the game?
 \end{enumerate}
-%\begin{figure}[tb]
 \begin{center}
 \begin{tikzpicture}[scale=1.2]
 \draw (0,0) node[above left] {$A$} -- 
@@ -23,11 +22,10 @@
 \draw[->] (4,7mm) -- node[above] {$p$} +(1,0);
 \end{tikzpicture}
 \end{center}
-%\caption{What is the probability that the particle reaches $0$ or $n$?}\label{f.ruin3}
-%\end{figure}
-The gambler's ruin is presented in most books on probability such as \cite[Section~2.7.2]{BW}, \cite[Section~3.4]{ross},\cite{mosteller}, \cite{mos}. \cite[Chapter~2]{privault} has a more extensive discussion which includes the solution to the expectation of the duration of the contest.\footnote{Privault presentation asks for the probability that $A$ is ruined, that is, that $B$ wins. I follow other references who ask for $A$'s probability of winning.}
+The most extensive presentation the gambler's ruin is in 
+\cite[Chapter~2]{privault} which includes the solution to the expected duration of the contest. Note that Privault asks for the probability that $A$ is ruined, that is, that $B$ wins. I follow other references which ask for $A$'s probability of winning.
 
-\subsection{Theoretical solutions}
+\subsection{Theoretical results}
 
 Given $(p,n,i)$ the probability that $A$ wins the contest is:
 \[
@@ -38,25 +36,24 @@ where $r=q/p$. By symmetry, the probability that $B$ wins is:
 P_B(p, n, i) = \left(\frac{1-(1/r)^{n-i}}{1-(1/r)^{n}}\right)\,.
 \]
 
-There are separate solutions for $p\neq 1/2$ and $p=1/2$. For $p\neq 1/2$ the expectation of the duration of the contest is:
+There are separate solutions for $p\neq 1/2$ and $p=1/2$. For $p\neq 1/2$ the expected duration of the contest is:
 \[
-P_{\mathit{duration}}(p,n,i)=\frac{1}{q-p}\left(i-n
+E_{\mathit{duration}}(p,n,i)=\frac{1}{q-p}\left(i-n
 \frac{1-r^k}{1-r^n}\right)\,.
 \]
-For $p=1/2$ the expectation of the duration of the contest is:
+For $p=1/2$ the expected duration of the contest is:
 \[
-P_{\mathit{duration}}(p,n,i)=i(n-1)\,.
+E_{\mathit{duration}}(p,n,i)=i(n-1)\,.
 \]
 Of course the duration does not depend on which player wins. If $A$ wins, the contest terminates for $B$ also, and conversely.
 
 \subsection{Program structure}
 
-The program is divided into three modules:
-\begin{itemize}
-\item \verb+configuration.py+ contains declarations of variables which are intended to be constants.
-\item \verb+gambler_plot.py+ contains the functions for plotting the histogram of the duration of the contests. If the simulation is run for multiple probabilities or initial values, a graph of the probability of wins is also displayed. The module imports \verb+matplotlib.pyplot+.
-\item \verb+gamblers_ruin.py+ is the main program which obtains the parameters, runs the simulations and prints the output.
-\end{itemize}
+\verb+configuration.py+ contains declarations of variables which are intended to be constant.
+
+\verb+gambler_plot.py+ contains the functions for plotting the histogram of the duration of the contests. If the simulation is run for multiple probabilities or initial values, a graph of the proportion of wins is also displayed.
+
+\verb+gamblers_ruin.py+ is the main program which obtains the parameters, runs the simulations, prints the output and calls the plotting functions.
 
 \subsection{Running the simulations}
 
@@ -71,9 +68,12 @@ Probability of winning = 0.1185
 Average duration  = 78
 Expected duration = 76
 \end{verbatim}
-The results of the simulation are very close to the theoretical probability and duration.
+The results of the simulation are very close to the theoretical probability and expected duration.
 
-Figure~\ref{f.gambler-hist1} shows the histogram for the duration of the contest, limited to a duration of $200$. The vertical line is the expectation.
+Figure~\ref{f.gambler-hist1} shows the histogram for the duration of the contest, limited to a duration of $200$. The vertical line is the expected duration.
+
+Figure~\ref{f.gambler-hist2} shows proportion of wins for multiple probabilities and the histograms for the duration of the contest for these probabilities.
+
 \begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{gamblers_ruin-01}
@@ -81,7 +81,6 @@ Figure~\ref{f.gambler-hist1} shows the histogram for the duration of the contest
 \caption{Histogram for $p=0.45, n=20, i=10$}\label{f.gambler-hist1}
 \end{figure}
 
-Figure~\ref{f.gambler-hist2} proportion of wins for multiple probabilities. It also shows histograms for the duration of the contest for these probabilities. 
 \begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{gamblers_ruin-02}

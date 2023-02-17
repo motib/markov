@@ -52,9 +52,13 @@ This work is licensed under Attribution-ShareAlike 4.0 International. To view a 
 
 \bigskip
 
-Simulations are an excellent way of understanding probability, especially, the behavior of process of long duration. These programs enable the user to perform experiments by varying the parameters of problems and analyzing the results, both printed and displayed in graphs. A level of knowledge of probability equivalent to the first few chapters or \cite{BW} or \cite{ross} is assumed.
+Simulations are an excellent way of understanding probability, especially, the behavior of process of long duration. These programs enable the user to perform experiments by varying the parameters of problems and analyzing the results, both printed and displayed in graphs. A level of knowledge of probability equivalent to the first few chapters of \cite{BW} or \cite{ross} is assumed.
 
-Section~\ref{s.gamblers} presents the \emph{Gambler's ruin problem}. Two players $A$ and $B$ divide a finite capital (amount of money between them) and they play a game in which $A$ probability of winning is $p$ and $B$'s is $1-p$. The loser gives one unit to the winner. The questions are: Given initial parameters, what is the probability that $A$ wins? What is the expectation of the duration of the game?
+The simulations are of processes known as \emph{Markov chains}, where the next state of the system depends only on the current state and not on the history of how the process got to the current state. These problems appear in probability textbooks \cite{BW, ross} and in much greater detail in \cite{mosteller, mos, border, privault}.
+
+Parameters such as the probability can be modified interactively in order to see how the outcome depends on the values of the parameters.
+
+Section~\ref{s.gamblers} presents the \emph{Gambler's ruin} while Section~\ref{s.walk} presents the one-dimensional \emph{Random walk}.
 
 \subsection*{Technical notes}
 
@@ -62,6 +66,6 @@ The programs are written in the Python 3 language and use the \verb+matplotlib+ 
 
 You need to install the Python (\url{https://www.python.org/downloads/}) although a knowledge of Python programming is not necessary.
 
-To run in the Visual Studio Code environment, ensure that \verb+Code Runner+ is installed. In the extension settings disable \verb+Preserve Focus+ and enable \verb+Run In Terminal+.
+To run in the Visual Studio Code environment, ensure that the \verb+Code Runner+ extension is installed. I recommend that in the extension settings disable \verb+Preserve Focus+ and enable \verb+Run In Terminal+.
 
-To run in the IDLE or Thonny environments, change the configuration constant \verb+CLOSE+ to true. When the simulation is run multiple times, you have to close each figure before running a new simulation.
+To run in the IDLE or Thonny environments, change the configuration constant \verb+CLOSE+ to \verb+True+. When the simulation is run multiple times, you will have to close each figure before running a new simulation.

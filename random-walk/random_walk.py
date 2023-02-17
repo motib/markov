@@ -92,7 +92,7 @@ def main():
                 origins.append(step_until_return_to_origin(
                                k, lim_save)[0] / C.SIMS)
             # Plot the graph of returns to origin
-            rp.generate_vlines("Proportion of return to origin",
+            rp.generate_vlines("Proportion returning to origin out of {:d} simulations".format(C.SIMS),
                                "Probability", C.PROBABILITIES, origins)
 
         # Multiple limits, loop over tuple in configuration
@@ -107,7 +107,7 @@ def main():
                               p_save, round(k*C.SIMS))[1] / C.SIMS)
             # Plot the graph of the limits reached
             rp.generate_vlines("Proportion reaching limit" + \
-                               " out of {:d} simulations".format(C.SIMS),
+                               " for probability {:.3f}".format(p_save),
                                "Limits",
                                [round(k*C.SIMS) for k in C.LIMITS],
                                limits)
