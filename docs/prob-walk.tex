@@ -65,35 +65,33 @@ E_{\mathit{origin}}=\disfrac{1}{q-p}=\disfrac{1}{1-2p}\,.
 
 \verb+configuration.py+ contains declarations of variables which are intended to be constant.
 
-\verb+random_walk_plot.py+ contains the functions for plotting a graph of the proportion of simulations until the return to the origin, if the simulation is run for multiple probabilities.
+\verb+random_walk_plot.py+ contains the functions for plotting a graph of the proportion of simulations that return to the origin and the mean duration if the simulation is run for multiple probabilities or limits.
 
 \verb+random_walk.py+ is the main program which obtains the parameters, runs the simulations, prints the output and calls the plotting functions.
 
 \subsection{Running the simulations}
 
-The program runs the simulations in a loop, each time asking the user how to run it. You can run the same simulation again with the saved parameters, enter new parameters, or run a sequence of simulations for a range of probabilities or initial values.
+The program runs the simulations in a loop, each time asking the user how to run it. You can run the same simulation again with the saved parameters, enter new parameters, or run a sequence of simulations for a range of probabilities or limits.
 
 A typical output is as follows:
 \begin{verbatim}
-Probability = 0.55, step limit   = 1000
-Proportion returning to origin   = 0.901
-Probability of return to origin  = 0.818
-Proportion reaching limit        = 0.099
+Probability = 0.50, step limit   = 1000
+Proportion returning to origin   = 0.977
+Probability of return to origin  = 1.000
+Proportion reaching limit        = 0.023
+Mean duration (steps)            = 49
+Expected duration (steps)        = infinity
 \end{verbatim}
-The results of the simulation are very close to the theoretical probability and expected duration.
-
-Figure~\ref{f.random_walk-01} shows the graph of the proportion of returns to the origin for different values of the probability and for a fixed limit.
+The proportion of wins in the simulation are very close to the theoretical probability, but the mean duration is far from infinite because the step limit was too small.  The proportion of wins and the mean durations are shown in Figures~\ref{f.random_walk-01} and \ref{f.random_walk-02}.
 \begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{random_walk-01}
+\caption{Proportion of wins and and mean durations for multiple probabilities}\label{f.random_walk-01}
 \end{center}
-\caption{Graph for a limit of $1000$ steps}\label{f.random_walk-01}
 \end{figure}
-
-Figure~\ref{f.random_walk-02} shows the proportion simulations reaching the limit for different values of the limit and for a fixed probability.
 \begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{random_walk-02}
+\caption{Proportion of wins and and mean durations for multiple limits}\label{f.random_walk-02}
 \end{center}
-\caption{Proportion of simulations reaching the limit for $p=0.51$}\label{f.random_walk-02}
 \end{figure}

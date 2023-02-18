@@ -28,11 +28,10 @@ HELP = "Gambler's ruin\n" + \
        "  histogram of steps until ruin\n" + \
        "Multiple runs for lists of probability and initial capitals\n" +\
        "  given in the configuration file\n" + \
-       "Output histogram and plot of proportions of wins\n" + \
-       "Close plot window before running again"
+       "Output histogram and plot of proportions of wins\n"
 
 # Number of simulations
-SIMS = 1000
+SIMS = 10000
 
 # Limit of steps to ruin
 LIMIT = 1000

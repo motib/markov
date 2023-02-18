@@ -61,29 +61,25 @@ The program runs the simulations in a loop, each time asking the user how to run
 
 A typical output is as follows:
 \begin{verbatim}
-Probability = 0.450, capital = 20, initial = 10
-Wins = 127, losses = 873, limits exceeded = 0
-Proportion of wins     = 0.1270
-Probability of winning = 0.1185
-Average duration  = 78
-Expected duration = 76
+Probability = 0.45, capital = 20, initial = 8
+Wins = 789, losses = 9211, limits exceeded = 0
+Proportion of wins     = 0.0789
+Probability of winning = 0.0732
+Average duration  = 65
+Expected duration = 65
 \end{verbatim}
-The results of the simulation are very close to the theoretical probability and expected duration.
-
-Figure~\ref{f.gambler-hist1} shows the histogram for the duration of the contest, limited to a duration of $200$. The vertical line is the expected duration.
-
-Figure~\ref{f.gambler-hist2} shows proportion of wins for multiple probabilities and the histograms for the duration of the contest for these probabilities.
+The results of the simulation are very close to the theoretical probability and expected duration. The proportion of wins and the histogram of the durations are shown in Figures~\ref{f.gambler-hist1}, \ref{f.gambler-hist2}. The vertical lines are the average durations.
 
 \begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{gamblers_ruin-01}
+\caption{Proportion of wins and histogram for $n=20, i=10$ and multiple probabilities}\label{f.gambler-hist1}
 \end{center}
-\caption{Histogram for $p=0.45, n=20, i=10$}\label{f.gambler-hist1}
 \end{figure}
 
 \begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{gamblers_ruin-02}
+\caption{Proportion of wins and histogram for $p=0.45, n=20$ and multiple initial values}\label{f.gambler-hist2}
 \end{center}
-\caption{Proportion of wins and histogram for $n=20, i=10$ and multiple probabilities}\label{f.gambler-hist2}
 \end{figure}

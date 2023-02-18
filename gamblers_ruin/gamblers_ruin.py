@@ -71,20 +71,17 @@ def step_until_zero_or_n(p, n, i, sim_index=0):
 # Display output for these parameters and this plot
 def display_output(p, n, i, sim_index, wins, losses, limits):
     # Print parameters
-    print("\nProbability = {:.3f}, capital = {:d}, initial = {:d}".
+    print("\nProbability = {:.2f}, capital = {:d}, initial = {:d}".
           format(p, n, i))
-
     # Print wins, losses and limits
     print("Wins = {:d}, losses = {:d}, limits exceeded = {:d}".
           format(wins, losses, limits))
-    
     # Print proportion of wins and
     #   theoretical probability of winning for these parameters
     print("Proportion of wins     = {:.4f}".
           format(wins/C.SIMS))
     print("Probability of winning = {:.4f}".
           format(probability_win(p, n, i)))
-
     # Print average and expected duration
     print("Average duration  = {:d}".
           format(round(np.mean(step_counts[sim_index]))))
@@ -97,14 +94,13 @@ def probability_win(p, n, i):
     if abs(p-0.5) < 0.00001: return i/n
     else:
         r = (1.0-p)/p
-        return \
-            1.0 -((r**i-r**n) / (1.0-r**n))
+        return 1.0 -((r**i-r**n) / (1.0-r**n))
 
 # Compute the expectation of the duration
 # There is a separate formula for p = 1/2
 def expectation(p, n, i):
     if abs(p-0.5) < 0.00001: return i*(n-i)
-    else:
+    else: 
         r = (1.0-p)/p
         return round(\
             (1.0/(1.0-2.0*p)) * \
@@ -164,13 +160,13 @@ def generate_plots(r, probabilities, n, initials, title):
         histograms.append(
             gp.generate_histogram(step_counts[k], k, label))
     
-    # Plot vertical lines at the expectations
+    # Plot vertical lines at the average duration
     #   for each probability or initial
     # The height of a line is the maximum of the
     #   maximum of each histogram
     for k in range(len(probabilities)):
         gp.generate_vline(
-            expectation(probabilities[k], n, initials[k]),
+            round(np.mean(step_counts[k])),
             max([max(h[0]) for h in histograms]), k)
 
     gp.finish_graph(fig, title)

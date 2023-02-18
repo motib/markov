@@ -8,7 +8,6 @@
 import configuration as C
 import matplotlib.pyplot as plt
 from matplotlib import lines
-#import tikzplotlib
 
 # Initialize the graph
 def init_graph():
@@ -27,9 +26,8 @@ def finish_graph(fig, title):
     # Title on figure, not subplots
     fig.suptitle(title, fontsize=16)
     # Label on x-axis and legend
-    plt.xlabel('Steps until ruin')
+    plt.xlabel('Duration (steps)')
     plt.legend()
-#    tikzplotlib.save("../docs/gamblers-ruin-plot.tex")
     # Draw the plot
     if not C.CLOSE:
         plt.draw()
