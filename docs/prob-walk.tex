@@ -14,6 +14,8 @@
   \draw (\x,0) -- +(0,4pt);
   \node at (\x,-10pt) { $\x$ };
 }
+\node at (-6,-10pt) { $\cdots$ };
+\node at (6,-10pt) { $\cdots$ };
 \draw[fill] (0,7mm) circle[radius=1pt];
 \draw[->] (0,7mm) -- node[above] {$q$} +(-1,0);
 \draw[->] (0,7mm) -- node[above] {$p$} +(1,0);
@@ -23,9 +25,7 @@ The clearest presentation of one-dimensional random walk is in \cite{border}, bu
 
 \subsection{Theoretical results}
 
-By symmetry, without loss of generality let the first step be to the right. 
-
-The particle can only return to the origin after an even number of steps. Assume that $p=1/2$. Let $S_{2m}$ be the position of the particle after $2m$ steps. Then:
+By symmetry let the first step be to the right.\footnote{This is equivalent to a first step to the left if $p$ and $q$ are exchanged.} The particle can only return to the origin after an even number of steps. Assume that $p=1/2$. Let $S_{2m}$ be the position of the particle after $2m$ steps. Then:
 \[
 P(S_{2m}=0) = \dischoose{2m}{m}\disfrac{1}{2^{2m}}\,,
 \]
@@ -65,15 +65,13 @@ E_{\mathit{origin}}=\disfrac{1}{q-p}=\disfrac{1}{1-2p}\,.
 
 \verb+configuration.py+ contains declarations of variables which are intended to be constant.
 
-\verb+random_walk_plot.py+ contains the functions for plotting a graph of the proportion of simulations that return to the origin and the mean duration if the simulation is run for multiple probabilities or limits.
+\verb+random_walk_plot.py+ contains the functions for plotting a graph of the proportion of simulations that return to the origin and the mean durations if the simulation is run for multiple probabilities or limits.
 
 \verb+random_walk.py+ is the main program which obtains the parameters, runs the simulations, prints the output and calls the plotting functions.
 
 \subsection{Running the simulations}
 
-The program runs the simulations in a loop, each time asking the user how to run it. You can run the same simulation again with the saved parameters, enter new parameters, or run a sequence of simulations for a range of probabilities or limits.
-
-A typical output is as follows:
+The program asking the user how to run the simulations and then runs them in a loop. You can run the same simulation again with the saved parameters, enter new parameters, or run a sequence of simulations for a range of probabilities or limits. A typical output is:
 \begin{verbatim}
 Probability = 0.50, step limit   = 1000
 Proportion returning to origin   = 0.977

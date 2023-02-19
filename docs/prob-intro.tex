@@ -52,20 +52,16 @@ This work is licensed under Attribution-ShareAlike 4.0 International. To view a 
 
 \bigskip
 
-Simulations are an excellent way of understanding probability, especially, the behavior of process of long duration. These programs enable the user to perform experiments by varying the parameters of problems and analyzing the results, both printed and displayed in graphs. A level of knowledge of probability equivalent to the first few chapters of \cite{BW} or \cite{ross} is assumed.
+Simulations are an excellent way of understanding probability, especially, the behavior of processes of long duration. The programs enable the user to perform experiments by varying the parameters of problems interactively and analyzing the results, both printed and displayed in graphs. A level of knowledge of probability equivalent to the first few chapters of \cite{BW} or \cite{ross} is assumed.
 
-The simulations are of processes known as \emph{Markov chains}, where the next state of the system depends only on the current state and not on the history of how the process got to the current state. These problems appear in probability textbooks \cite{BW, ross} and in much greater detail in \cite{mosteller, mos, border, privault}.
+The simulations are of processes known as \emph{Markov chains}, where the next state of the system depends only on the current state and not on the history of how the process got to the current state. These problems appear in probability textbooks \cite{BW, ross} and in much greater detail in \cite{mos, border, mosteller, privault}.
 
-Parameters such as the probability can be modified interactively in order to see how the outcome depends on the values of the parameters.
-
-Section~\ref{s.gamblers} presents the \emph{Gambler's ruin} while Section~\ref{s.walk} presents the one-dimensional \emph{Random walk}.
+Section~\ref{s.gamblers} presents the \emph{Gambler's ruin problem} while Section~\ref{s.walk} presents \emph{Random walk}.
 
 \subsection*{Technical notes}
 
-The programs are written in the Python 3 language and use the \verb+matplotlib+ to generate the graphs. Parameters directly related to the problems, such as the probability of success, can be modified interactively. Others, related to the simulation, such as the number of steps in a simulation and the properties of the histograms, are defined in a module \verb+configuration.py+ that can be modified.
+The programs are written in the Python 3 language and use the \verb+matplotlib+ library to generate the graphs. Parameters directly related to the problems, such as the probability of success, can be modified interactively. Others, related to the simulation, such as the number of steps in a simulation, are defined in a module \verb+configuration.py+ containing just declarations of values that are easy to modify.
 
 You need to install the Python (\url{https://www.python.org/downloads/}) although a knowledge of Python programming is not necessary.
 
-To run in the Visual Studio Code environment, ensure that the \verb+Code Runner+ extension is installed. I recommend that in the extension settings disable \verb+Preserve Focus+ and enable \verb+Run In Terminal+.
-
-To run in the IDLE or Thonny environments, change the configuration constant \verb+CLOSE+ to \verb+True+. When the simulation is run multiple times, you will have to close each figure before running a new simulation.
+To run in the IDLE or Thonny environments, change the configuration constant \verb+CLOSE+ to \verb+True+. When the simulation is run multiple times, you will have to close each figure before running a new simulation. This is not necessary if the programs are run in Visual Studio Code or from the command line.

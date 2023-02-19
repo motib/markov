@@ -2,7 +2,7 @@
 
 \section{Gambler's Ruin}\label{s.gamblers}
 
-\textbf{Problem} Two players $A$ and $B$ compete in a contest. There is an initial finite capital of $n$ units: $A$ has $i$ and $B$ has $n-i$. They repeatedly play a game where the probability that $A$ wins is $p$ and the probability that $B$ wins is $q=1-p$. The loser gives one unit to the winner. When one player has all $n$ units the contest is finished.
+\textbf{Problem} Two players $A$ and $B$ compete in a contest. There is an initial finite capital of $n$ units: $A$ has $i$ and $B$ has $n-i$. They repeatedly play a game where the probability that $A$ wins is $p$ and the probability that $B$ wins is $q=1-p$. The loser gives one unit to the winner. When one player has all $n$ units the contest is terminated and that player is declared the winner.
 \begin{enumerate}
 \item Given initial parameters $(p, n, i)$, what is the probability that $A$ wins?
 \item What is the expected duration of the game?
@@ -51,15 +51,13 @@ Of course the duration does not depend on which player wins. If $A$ wins, the co
 
 \verb+configuration.py+ contains declarations of variables which are intended to be constant.
 
-\verb+gambler_plot.py+ contains the functions for plotting the histogram of the duration of the contests. If the simulation is run for multiple probabilities or initial values, a graph of the proportion of wins is also displayed.
+\verb+gambler_plot.py+ contains the functions for plotting the histogram of the durations of all the runs of the simulation. If the simulations are run for multiple probabilities or initial values, a graph of the proportion of wins is also displayed.
 
 \verb+gamblers_ruin.py+ is the main program which obtains the parameters, runs the simulations, prints the output and calls the plotting functions.
 
 \subsection{Running the simulations}
 
-The program runs the simulations in a loop, each time asking the user how to run it. You can run the same simulation again with the saved parameters, enter new parameters, or run a sequence of simulations for a range of probabilities or initial values.
-
-A typical output is as follows:
+The program asking the user how to run the simulations and then runs them in a loop. You can run the same simulation again with the saved parameters, enter new parameters, or run a sequence of simulations for a range of probabilities or initial values. A typical output for $10000$ simulations is:
 \begin{verbatim}
 Probability = 0.45, capital = 20, initial = 8
 Wins = 789, losses = 9211, limits exceeded = 0
@@ -68,7 +66,7 @@ Probability of winning = 0.0732
 Average duration  = 65
 Expected duration = 65
 \end{verbatim}
-The results of the simulation are very close to the theoretical probability and expected duration. The proportion of wins and the histogram of the durations are shown in Figures~\ref{f.gambler-hist1}, \ref{f.gambler-hist2}. The vertical lines are the average durations.
+A graph of the proportion of wins and the histogram of the durations are shown in Figures~\ref{f.gambler-hist1}, \ref{f.gambler-hist2}. The vertical lines are the average durations.
 
 \begin{figure}
 \begin{center}
