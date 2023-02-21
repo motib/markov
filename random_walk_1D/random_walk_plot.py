@@ -24,6 +24,7 @@ def init_graph():
 def generate_vlines(title1, xlabel, 
                     xvalues, yvalues1, title2, yvalues2):
     fig = init_graph()
+    fig.suptitle(C.GRAPH_TITLE)
     # Plot the proportions of returns to the origin
     plt.subplot(1,2,1)
     plt.xlabel(xlabel)

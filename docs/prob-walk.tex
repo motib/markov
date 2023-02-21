@@ -96,7 +96,7 @@ The proportion of wins in the simulation are very close to the theoretical proba
 
 \subsection{Two-dimensional random walk}
 
-In a two-dimensional random walk a step of the particle consists of one step left or right on the $x$-axis with probability $1/2$ and simultaneously one step up or down on the $y$-axis also with probability $1/2$ (Figure~\ref{f.2d-random-walk}).
+In a two-dimensional random walk \cite{mos,mosteller} a step of the particle consists of one step left or right on the $x$-axis with probability $1/2$ and simultaneously one step up or down on the $y$-axis also with probability $1/2$ (Figure~\ref{f.2d-random-walk}).
 
 \begin{figure}
 \begin{center}
@@ -151,3 +151,16 @@ The program structure is the same as for the one-dimensional random walk. You ca
 \caption{Proportion of returns to origin and and mean durations for multiple limits}\label{f.random-walk-2D}
 \end{center}
 \end{figure}
+
+\newpage
+
+\subsection{Three-dimensional random walk}
+
+The three-dimensional random walk \cite{mos,mosteller} adds a simultaneous step along the $z$-axis with probability $1/2$. However, the probability of a return to the origin is only $0.2379$ so the simulations will show a large number of simulations reaching the limit:
+
+\begin{verbatim}
+Limit                            = 100000
+Proportion returning to origin   = 0.370
+Proportion reaching limit        = 0.630
+Mean duration (steps)            = 63518
+\end{verbatim}

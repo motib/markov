@@ -17,6 +17,8 @@ SIMS = 1000
 # Probability is always 0.5 for 2D, 3D random walk
 p = 0.5
 
+GRAPH_TITLE = "Two-Dimensional Random Walk"
+
 # Prompt string
 PROMPT = "One run:       s(aved) parameters,  n(ew) parameters\n" + \
          "Multiple runs: l(limits)\n" + \

@@ -1,4 +1,4 @@
-# One-dimensional random walk
+# Three-dimensional random walk
 
 # Copyright 2023. Moti Ben-Ari
 # Creative Commons Attribution-ShareAlike
@@ -12,31 +12,29 @@ CLOSE = False
 # True: Plot must be closed before continuing
 
 # Number of simulations
-SIMS = 10000
+SIMS = 100
 
-GRAPH_TITLE = "One-Dimensional Random Walk"
+# Probability is always 0.5 for 2D, 3D random walk
+p = 0.5
+
+GRAPH_TITLE = "Three-Dimensional Random Walk"
 
 # Prompt string
 PROMPT = "One run:       s(aved) parameters,  n(ew) parameters\n" + \
-         "Multiple runs: p(robabilities),     l(limits)\n" + \
+         "Multiple runs: l(limits)\n" + \
          "               q(uit),              h(elp)\n"
 
 # Help string
-HELP = "\nOne-dimensional random walk\n" + \
+HELP = "\nTwo-dimensional random walk\n" + \
        "Parameters are:\n" + \
-       "  p = probability of a step to the right\n" + \
-       "  lim = step limit\n" + \
+       "  limit = step limit\n" + \
        "Output is:\n" + \
        "  proportion and probability of return to the origin\n" + \
        "  proportion of simulations that reached the limit\n" + \
        "  mean duration and expected duration (steps)\n"
 
-# Default parameters:
-# Probability, step limit
-P_DEFAULT, LIM_DEFAULT = 0.5, 1000
-
-# Probabilities for multiple simulations
-PROBABILITIES = (0.40, 0.45, 0.50, 0.55, 0.60, 0.65, 0.70)
+# Default step limit
+LIMIT_DEFAULT = 100000
 
 # Limits (percentages) for multiple simulations
 LIMITS = (0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9)
