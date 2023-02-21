@@ -80,16 +80,74 @@ Proportion reaching limit        = 0.023
 Mean duration (steps)            = 49
 Expected duration (steps)        = infinity
 \end{verbatim}
-The proportion of wins in the simulation are very close to the theoretical probability, but the mean duration is far from infinite because the step limit was too small.  The proportion of wins and the mean durations are shown in Figures~\ref{f.random_walk-01} and \ref{f.random_walk-02}.
+The proportion of wins in the simulation are very close to the theoretical probability, but the mean duration is far from infinite because the step limit was too small.  The proportion of wins and the mean durations are shown in Figures~\ref{f.random-walk-01} and \ref{f.random-walk-02}.
 \begin{figure}
 \begin{center}
-\includegraphics[width=\textwidth]{random_walk-01}
-\caption{Proportion of wins and and mean durations for multiple probabilities}\label{f.random_walk-01}
+\includegraphics[width=\textwidth]{random-walk-01}
+\caption{Proportion of returns to origin and and mean durations for multiple probabilities}\label{f.random-walk-01}
 \end{center}
 \end{figure}
 \begin{figure}
 \begin{center}
-\includegraphics[width=\textwidth]{random_walk-02}
-\caption{Proportion of wins and and mean durations for multiple limits}\label{f.random_walk-02}
+\includegraphics[width=\textwidth]{random-walk-02}
+\caption{Proportion of returns to origin and mean durations for multiple limits}\label{f.random-walk-02}
+\end{center}
+\end{figure}
+
+\subsection{Two-dimensional random walk}
+
+In a two-dimensional random walk a step of the particle consists of one step left or right on the $x$-axis with probability $1/2$ and simultaneously one step up or down on the $y$-axis also with probability $1/2$ (Figure~\ref{f.2d-random-walk}).
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}[scale=.67]
+\draw[color=gray] (-4,-4) grid (4,4);
+\draw[thick] (-4,0) -- (4,0);
+\draw[thick] (0,-4) -- (0,4);
+\node[below left] at (-4,-4) {$\scriptstyle (-4,-4)$};
+\node[below right] at (4,-4) {$\scriptstyle (4,-4)$};
+\node[above left] at (-4,4) {$\scriptstyle (-4,4)$};
+\node[above right] at (4,4) {$\scriptstyle (4,4)$};
+\fill (0,0) circle[radius=2pt];
+\draw[->] (0,0)  -- (-1,1);
+\draw[->] (-1,1) -- (0,2);
+\draw[->] (0,2)  -- (1,3);
+\draw[->] (1,3)  -- (0,4);
+\draw[->] (0,4)  -- (-1,3);
+\draw[->] (-1,3) -- (0,2);
+\draw[->] (0,2)  -- (1,1);
+\draw[->] (1,1)  -- (2,2);
+\draw[->] (2,2)  -- (3,1);
+\draw[->] (3,1)  -- (2,0);
+\draw[->] (2,0)  -- (3,-1);
+\draw[->] (3,-1) -- (2,-2);
+\draw[->] (2,-2) -- (1,-1);
+\draw[->] (1,-1) -- (0,-2);
+\draw[->] (0,-2) -- (1,-3);
+\draw[->] (1,-3) -- (0,-4);
+\draw[->] (0,-4) -- (-1,-3);
+\draw[->] (-1,-3)-- (-2,-2);
+\draw[->] (-2,-2)-- (-1,-1);
+\draw[->] (-1,-1)-- (0,-2);
+\draw[->] (0,-2) -- (1,-1);
+\draw[->] (1,-1) -- (.055,-.055);
+\end{tikzpicture}
+\end{center}
+\caption{A $22$-step two-dimensional random walk}\label{f.2d-random-walk}
+\end{figure}
+The probability $1$ the particle will return to the origin but the expected duration is infinite! Therefore, when you run the simulation with any reasonable limit on the number of steps, the proportion of returns to the origin will be much less than $1$ and the mean duration will be quite large:
+\begin{verbatim}
+Limit                            = 100000
+Proportion returning to origin   = 0.777
+Proportion reaching limit        = 0.223
+Mean duration (steps)            = 24133
+\end{verbatim}
+
+The program structure is the same as for the one-dimensional random walk. You can enter the step limit parameter for each simulation interactively and can run the simulations for a range of limits expressed as percentages of the parameter. Figure~\ref{f.random-walk-2D} shows the proportion of returns to the origin and the mean durations for a range of limits.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{random-walk-02}
+\caption{Proportion of returns to origin and and mean durations for multiple limits}\label{f.random-walk-2D}
 \end{center}
 \end{figure}
