@@ -12,12 +12,14 @@
 % TikZ package
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
+\usetikzlibrary{positioning}
 \tikzset {>=Stealth}
-
 
 % Displaystyle for fractions and combinations
 \newcommand*{\disfrac}[2]{\displaystyle\frac{#1}{#2}}
 \newcommand*{\dischoose}[2]{\displaystyle{#1 \choose #2}}
+
+\setcounter{tocdepth}{1}
 
 % Change LaTeX defaults for figures
 \renewcommand{\topfraction}{0.9}
@@ -40,13 +42,14 @@
 \renewcommand{\baselinestretch}{1.1}
 \setlength{\parskip}{0.3\baselineskip plus 1pt minus 1pt}
 
-%\includeonly{}
+%\includeonly{prob-ehren}
 
 \begin{document}
 
 \include{prob-intro}
 \include{prob-ruin}
 \include{prob-walk}
+\include{prob-ehren}
 \include{prob-bib}
 
 \end{document}

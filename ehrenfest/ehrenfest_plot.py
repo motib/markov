@@ -26,7 +26,7 @@ def init_graph():
 def generate_vlines(n, yvalues1, yvalues2):
     init_graph()
     plt.xlabel("Particles in left urn")
-    plt.ylabel("Proportion")
+    plt.ylabel("Probability and proportion")
     plt.title("Ehrenfest model for {:d} urns".format(n))
     # x-values are each number of particles
     # simulation values are slightly offset for visibilty
