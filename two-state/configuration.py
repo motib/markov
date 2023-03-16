@@ -6,7 +6,8 @@
 # Global configuration constants
 
 # Prompt string
-PROMPT = "s(aved) parameters,  n(ew) parameters\n" + \
+PROMPT = "s(aved) parameters,  n(ew) parameters, " + \
+         "p(roportion) B's,\n" + \
          "q(uit),              h(elp)\n"
 
 # Help string
