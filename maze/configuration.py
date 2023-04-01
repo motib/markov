@@ -10,14 +10,12 @@ import numpy as np
 
 # Number of simulations
 SIMS = 1000
+
 # Limit of simulations steps
 LIMIT = 1000
 
 # Number of states in the maze
 STATES = 9
-
-# Goal state to return to
-GOAL = 0
 
 # Transition matrix
 # Initialize with zeros and then

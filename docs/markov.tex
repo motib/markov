@@ -469,49 +469,65 @@ Simulation  stationary distribution: A = 0.194, B = 0.806
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{The two-state process}\label{s.two-state}
+\section{A maze}\label{maze}
 
-The two-state process is similar to the Ehrenfest model in that the probabilities at each step are different and we are interested in the stationary probability distribution of the unbounded process. There are two states $A,B$. In state $A$ the process transitions to $B$  with probability $a$ and remains in $A$ with probability $1-a$. Similarly, the probability of a transition from $B$ to $A$ is $b$ and the probability of remaining in $B$ is $1-b$.
+This problem and its solution is presented in \cite[Sections~5.3, 7.2]{privault}.
+
+Given the Markov chain shown in the following diagram, simulate the average number of steps until the first return to state $i$ starting in state $j$.
 \begin{center}
-\begin{tikzpicture}[->,node distance = 6mm and 2cm]
-\node[draw,circle,minimum size=10mm] (A) {$A$};
-\node[draw,circle,minimum size=10mm] (B) [right=of A] {$B$};
-\draw (A) edge[bend left] node[above] {$a$} (B);
-\draw (B) edge[bend left] node[below] {$b$} (A);
-\draw (A) edge [loop left] node {$1-a$} (A);
-\draw (B) edge [loop right] node {$1-b$} (B);
+\begin{tikzpicture}[shorten >=1pt,node distance=2.5cm and 3cm,on grid,auto]
+\node[state] (q1)               {$1$};
+\node[state] (q2) [right=of q1] {$2$};
+\node[state] (q3) [right=of q2] {$3$};
+\node[state] (q4) [below=of q1] {$4$};
+\node[state] (q5) [right=of q4] {$5$};
+\node[state] (q6) [right=of q5] {$6$};
+\node[state] (q7) [below=of q4] {$7$};
+\node[state] (q8) [right=of q7] {$8$};
+\node[state] (q9) [right=of q8] {$9$};
+\path[->,every node/.style={font=\footnotesize}] 
+  (q1) edge[bend left=25] node {1/2} (q2)
+  (q2) edge[bend left=25] node {1/2} (q1)
+  (q2) edge[bend left=25] node {1/2} (q3)
+  (q3) edge[bend left=25] node {1/2} (q2)
+  (q3) edge[bend left=25] node {1/2} (q6)
+  (q6) edge[bend left=25] node {1/2} (q3)
+  (q6) edge[bend left=25] node {1/2} (q5)
+  (q5) edge[bend left=25] node {1/2} (q6)
+  (q5) edge[bend left=25] node {1/2} (q8)
+  (q8) edge[bend left=25] node {1/2} (q5)
+  (q4) edge[bend left=25] node {1/2} (q7)
+  (q7) edge[bend left=25] node {1/2} (q4)
+  (q7) edge[bend left=25] node {1/2} (q8)
+  (q8) edge[bend left=25] node {1/3} (q7)
+  (q8) edge[bend left=25] node {1/3} (q9)
+  (q9) edge[bend left=25] node {1/3} (q8);
 \end{tikzpicture}
 \end{center}
-The stationary distribution, that is, the proportion of visits to $A$ and to $B$ is:
-\[
-\left[\frac{b}{a+b}, \frac{a}{a+b}\right]\,.
-\]
-Here is an output of a simulation:
+
+Privault computes the expected number of returns to state $0$ starting in any other state and the average number of steps in the simulation is very close to to the expected number of returns:
 \begin{verbatim}
-Probabilities:  a = 0.500, b = 0.333
-Theoretical stationary distribution: A = 0.400, B = 0.600
-Simulation  stationary distribution: A = 0.402, B = 0.598
+Expected steps to return to 0 = [16, 15, 28, 59, 48, 39, 58, 55, 56]
+Average  steps to return to 0 = [14, 15, 28, 59, 46, 39, 59, 55, 54]
 \end{verbatim}
-When $a+b=1$ the probability of being at $A$ is $b$ and the probability of being at $B$ is $a$:
+The simulation of the average number of returns to any state $i$ from any state $j$ gives:
 \begin{verbatim}
-Probabilities:  a = 0.333, b = 0.667
-Theoretical stationary distribution: A = 0.667, B = 0.333
-Simulation  stationary distribution: A = 0.674, B = 0.326
+Average  steps to return to 0 = [14, 15, 28, 59, 46, 39, 59, 55, 54]
+Average  steps to return to 1 = [ 1,  8, 14, 43, 31, 24, 42, 40, 40]
+Average  steps to return to 2 = [ 3,  2,  8, 31, 20, 10, 29, 27, 30]
+Average  steps to return to 3 = [52, 53, 50, 15, 37, 44, 14, 29, 28]
+Average  steps to return to 5 = [ 8,  8,  5, 20,  8,  7, 18, 15, 16]
+Average  steps to return to 6 = [37, 37, 35,  1, 21, 29,  8, 13, 14]
+Average  steps to return to 7 = [25, 23, 21,  4,  9, 16,  3,  5,  1]
+Average  steps to return to 8 = [38, 37, 37, 19, 25, 30, 18, 14, 16]
 \end{verbatim}
-You can enter a required proportion $p$ of visits to $B$ and any probability $0<a<p$. The proportion will be achieved for:
-\[
-b = \frac{a(1-p)}{p}\,,
-\]
-as shown in the following simulation where we entered $p=0.8, a=0.6$:
+Privault also computes the expected number of returns to state $i$ from state $i$ and the averages (the main diagonal of the above matrix) are very close:
 \begin{verbatim}
-Probabilities:  a = 0.600, b = 0.150, proportion = 0.800
-Theoretical stationary distribution: A = 0.200, B = 0.800
-Simulation  stationary distribution: A = 0.194, B = 0.806
+Expected steps to return to i from i = [16,  8,  8, 16,  8,  8,  8,  5, 16]
+Average  steps to return to i from i = [14,  8,  8, 15,  7,  7,  8,  5, 16]
 \end{verbatim}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\newpage
 
 \addcontentsline{toc}{section}{References}
 

@@ -1,4 +1,5 @@
 ﻿conditional
+privault.*
 docs/*.pdf
 *.pyc
 *.json

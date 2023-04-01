@@ -10,8 +10,12 @@
 import configuration as C
 import random
 
+# Returns to state i when goal is state i
+returns = [0]*C.STATES
+
 # Run the simulation
 def simulate_return(goal):
+    global returns
     # Counts for returning to the goal state
     counts = [0]*C.STATES
 
@@ -45,19 +49,24 @@ def simulate_return(goal):
                 if current == goal:
                     counts[initial] += step_count
                     break
+    # Returns to i from i
+    returns[goal] = counts[goal]
     # Display output when all simulations terminate
-    display_output(counts)
+    formatted_array("Average  steps to return to {:d} = ".format(goal), counts)
 
-def display_output(counts):
-    # Print the expectations from Privault
-    #   and the averages from the simulations
-    print("Expectation steps to return = " + \
-          "[16, 15, 28, 59, 48, 39, 58, 55, 56]")
-    print("Average steps to return     = " + \
-          str([c // C.SIMS for c in counts]))
+def formatted_array(s, a):
+    values = ["{:2d}".format(elem) for elem in [c // C.SIMS for c in a]]
+    print(s + '[' + ', '.join(values) + ']')
 
 def main():
-    simulate_return(C.GOAL)
+    # Print the expectations from Privault
+    print("Expected steps to return to 0 = " + \
+          "[16, 15, 28, 59, 48, 39, 58, 55, 56]")
+    for goal in range(0,9):
+        simulate_return(goal)
+    print("\nExpected steps to return to i from i = " + \
+          "[16,  8,  8, 16,  8,  8,  8,  5, 16]")
+    formatted_array("Average  steps to return to i from i = ", returns)
 
 if __name__ == '__main__':
     main()
