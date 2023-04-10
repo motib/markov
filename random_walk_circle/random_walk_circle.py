@@ -81,5 +81,7 @@ def main():
     h = rp.generate_histogram(visited_all)
     rp.finish_graph(fig)
 
+    if not C.CLOSE: input("Press any key to terminate ")
+
 if __name__ == '__main__':
     main()

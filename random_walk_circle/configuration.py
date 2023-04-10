@@ -5,12 +5,11 @@
 
 # Global configuration constants
 
-########### False not working for this program ###########
-CLOSE = True
-# False: The plot need not be closed before running again
-#       Does not work is run from Thonny and IDLE
-#         but does work in Visual Studio Code
-# True: Plot must be closed before continuing
+CLOSE = False
+# False: The plot need not be closed before terminating
+#        Does not work is run from Thonny and IDLE
+#          but does work in Visual Studio Code
+# True: Plot must be closed before terminating
 
 # Number of simulations
 SIMS = 1000
