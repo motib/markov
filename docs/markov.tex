@@ -20,7 +20,6 @@
 \newcommand*{\disfrac}[2]{\displaystyle\frac{#1}{#2}}
 \newcommand*{\dischoose}[2]{\displaystyle{#1 \choose #2}}
 \newcommand*{\sm}[1]{$\scriptstyle #1$}
-\setcounter{tocdepth}{1}
 
 % Change LaTeX defaults for figures
 \renewcommand{\topfraction}{0.9}
@@ -43,17 +42,7 @@
 \renewcommand{\baselinestretch}{1.1}
 \setlength{\parskip}{0.3\baselineskip plus 1pt minus 1pt}
 
-%\includeonly{markov-maze}
-
 \begin{document}
-
-%\include{markov-intro}
-%\include{markov-ruin}
-%\include{markov-walk}
-%\include{markov-ehren}
-%\include{markov-two-state}
-%\include{markov-maze}
-%\include{markov-bib}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -100,32 +89,23 @@ This work is licensed under Attribution-ShareAlike 4.0 International. To view a 
 
 \section{Introduction}
 
-Simulations are an excellent way of understanding probability, especially, the behavior of processes of long duration. Simulation programs enable the user to perform experiments by varying the parameters of problems interactively and analyzing the results, both printed and displayed in graphs. The simulations in this archive are of processes known as \emph{Markov chains}, where the next state of the system depends only on the current state and not on the history of how the process got to the current state. 
+Simulations are an excellent way of understanding probability, especially the behavior of processes of long duration. Simulation programs enable the user to perform experiments by varying the parameters of problems and analyzing. The simulations in this archive are of processes known as \emph{Markov chains}, where the next state of the system depends only on the current state and not on the history of how the process got to the current state. 
 
-The following problems are simulated: the \emph{gambler's ruin} in 
-Section~\ref{s.gamblers}, one-, two- and three-dimensional \emph{random walk} in Section~\ref{s.walk}, the \emph{Ehrenfest model} in Section~\ref{s.ehrenfest} and the \emph{two-state process} in Section~\ref{s.two-state}.
+The following problems are simulated: the \emph{gambler's ruin}, one-, two- and three-dimensional \emph{random walk} and random walk in a circle, the \emph{Ehrenfest model}, the \emph{two-state process} and \emph{transversing a maze}.
 
-\subsection*{Technical notes}
+A knowledge of probability is assumed at the level of the first few chapters of \cite{BW,ross}. The problems and their theoretical solutions are from the works cited in the references.
+
+\nocite{*}
 
 The programs are written in the Python 3 language and use the \verb+matplotlib+ library to generate the graphs. You need to install Python (\url{https://www.python.org/downloads/}) although a knowledge of Python programming is not necessary to run the simulations.
 
-To run in the IDLE or Thonny environments, change the configuration constant \verb+CLOSE+ to \verb+True+. When the simulation is run multiple times, you will have to close each figure before running a new simulation. This is not necessary if the programs are run in the Visual Studio Code environment or from the command line.
-
-Parameters directly related to the problems, such as the probability of success, can be modified interactively. Others, related to the simulation, such as the number of steps in a simulation, are defined in a module \verb+configuration.py+ which just contains declarations of values so it is easy to modify. The code that uses \verb+matplotlib+ appears in a separate module.
-
-\subsection*{Sources}
-
-A knowledge of probability is assumed at the level of the first few chapters of \cite{BW,ross}. These textbooks include examples of the gambler's ruin and random walk, as well as short presentations of Markov chains. The clearest explanational of one-dimensional random walk is in \cite{border}. I was introduced to these problems by Mosteller \cite{mosteller}; my ``reworking'' of this book is in \cite{mos}. A comprehensive work on Markov chains is \cite{privault} from which I took most of the theoretical results.
+Parameters directly related to the problems, such as the probability of success, can be modified interactively. Others, related to the simulation, such as the number of steps in a simulation, are defined in a file \verb+configuration.py+. The code that uses \verb+matplotlib+ also appears in a separate file.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Gambler's ruin}\label{s.gamblers}
 
-\textbf{Problem} Two players $A$ and $B$ compete in a contest. There is an initial finite capital of $n$ units: $A$ has $i$ and $B$ has $n-i$. They repeatedly play a game where the probability that $A$ wins is $p$ and the probability that $B$ wins is $q=1-p$. The loser gives one unit to the winner. When one player has all $n$ units the contest is terminated and that player is declared the winner.
-\begin{enumerate}
-\item Given initial parameters $(p, n, i)$, what is the probability that $A$ wins?
-\item What is the expected duration of the game?
-\end{enumerate}
+Two players $A$ and $B$ compete in a contest. There is an initial finite capital of $n$ units: $A$ has $i$ and $B$ has $n-i$. They repeatedly play a game where the probability that $A$ wins is $p$ and the probability that $B$ wins is $q=1-p$. The loser gives one unit to the winner. When one player has all $n$ units the contest is terminated and that player is declared the winner.
 \begin{center}
 \begin{tikzpicture}[scale=1.2]
 \draw (0,0) node[above left] {$A$} -- 
@@ -141,8 +121,10 @@ A knowledge of probability is assumed at the level of the first few chapters of 
 \draw[->] (4,7mm) -- node[above] {$p$} +(1,0);
 \end{tikzpicture}
 \end{center}
-
-\subsection{Theoretical results}
+\begin{itemize}
+\item Given initial parameters $(p, n, i)$, what is the probability that $A$ wins?
+\item What is the expected duration of the game?
+\end{itemize}
 
 Given $(p,n,i)$ the probability that $A$ wins the contest is:
 \[
@@ -158,15 +140,13 @@ For $p\neq 1/2$ the expected duration of the contest is:
 E_{\mathit{duration}}(p,n,i)=\frac{1}{q-p}\left(i-n
 \frac{1-r^k}{1-r^n}\right)\,,
 \]
-while for $p=1/2$ the expected duration of the contest is:
+while for $p=1/2$ the expected duration is:
 \[
 E_{\mathit{duration}}(p,n,i)=i(n-1)\,.
 \]
-Of course the duration does not depend on which player wins. If $A$ wins, the contest terminates for $B$ also, and conversely.
+Of course the duration does not depend on which player wins. If $A$ wins, the contest terminates for $B$ and conversely.
 
-\subsection{Running the simulations}
-
-The program asks the user how to run the simulations and then runs them in a loop. You can run the same simulation again with the saved parameters, enter new parameters, or run a sequence of simulations for a range of probabilities or initial values. Here is an output for $10000$ simulations:
+You can run a simulation more than once with the saved parameters, enter new parameters, or run a sequence of simulations for a range of probabilities or initial values. Here is one output:
 \begin{verbatim}
 Probability = 0.45, capital = 20, initial = 8
 Wins = 789, losses = 9211, limits exceeded = 0
@@ -175,7 +155,7 @@ Probability of winning = 0.0732
 Average duration  = 65
 Expected duration = 65
 \end{verbatim}
-A graph of the proportion of wins and the histogram of the durations are shown in Figures~\ref{f.gambler-hist1}, \ref{f.gambler-hist2}. The vertical lines are the average durations.
+A graph of the proportion of wins and the histogram of the durations are shown in Figures~\ref{f.gambler-hist1}, \ref{f.gambler-hist2}. The vertical lines in the histograms are the average durations.
 
 \begin{figure}
 \begin{center}
@@ -195,11 +175,9 @@ A graph of the proportion of wins and the histogram of the durations are shown i
 
 \section{Random walk}\label{s.walk}
 
-\textbf{Problem} A particle is placed at the origin of the $x$-axis. It repeatedly takes steps: right with probability $p$ and left with probability $q=1-p$.
-\begin{enumerate}
-\item What is the probability that the particle will return to the origin?
-\item What is the expected duration until the particle returns to the origin?
-\end{enumerate}
+\subsection{One-dimensional random walk}
+
+A particle is placed at the origin of the $x$-axis. It repeatedly takes steps: right with probability $p$ and left with probability $q=1-p$.
 \begin{center}
 \begin{tikzpicture}[scale=1.2]
 \draw[<->] (-6,0) -- (6,0);
@@ -214,18 +192,16 @@ A graph of the proportion of wins and the histogram of the durations are shown i
 \draw[->] (0,7mm) -- node[above] {$p$} +(1,0);
 \end{tikzpicture}
 \end{center}
-
-\subsection{Theoretical results}
+\begin{itemize}
+\item What is the probability that the particle will return to the origin?
+\item What is the expected duration until the particle returns to the origin?
+\end{itemize}
 
 By symmetry let the first step be to the right. The particle can only return to the origin after an even number of steps. Assume that $p=1/2$. Let $S_{2m}$ be the position of the particle after $2m$ steps. Then:
 \[
 P(S_{2m}=0) = \dischoose{2m}{m}\disfrac{1}{2^{2m}}\,,
 \]
-which by Stirling's formula is:
-\[
-P(S_{2m}=0) \approx \disfrac{1}{\sqrt{\pi m}}\,.
-\]
-It can now be proved that the probability of a return to the origin is $1$.
+which by Stirling's formula is approximately equal to $1/\sqrt{\pi m}$. It can now be proved that the probability of a return to the origin is $1$.
 
 For $p\leq 1/2$, $P_{\mathit{origin}}$, the probability of a return to the origin, is $1$ and for $p\geq 1/2$ the probability is (Figure~\ref{f.walk1}):
 \[
@@ -253,9 +229,7 @@ $E_{\mathit{origin}}$, the expected duration until the first return to the origi
 E_{\mathit{origin}}=\disfrac{1}{q-p}=\disfrac{1}{1-2p}\,.
 \]
 
-\subsection{Running the simulations}
-
-The program asks the user how to run the simulations and then runs them in a loop. You can run the same simulation again with the saved parameters, enter new parameters, or run a sequence of simulations for a range of probabilities or limits. Here is an output of the simulation:
+You can run a simulation more than once with the saved parameters, enter new parameters, or run a sequence of simulations for a range of probabilities or limits. Here is one output:
 \begin{verbatim}
 Probability = 0.50, step limit   = 1000
 Proportion returning to origin   = 0.977
@@ -326,8 +300,7 @@ Proportion returning to origin   = 0.777
 Proportion reaching limit        = 0.223
 Mean duration (steps)            = 24133
 \end{verbatim}
-
-The program structure is the same as for the one-dimensional random walk. You can enter the step limit parameter for each simulation interactively and can run the simulations for a range of limits expressed as percentages of the parameter. Figure~\ref{f.random-walk-2D} shows the proportion of returns to the origin and the mean durations for a range of limits.
+Figure~\ref{f.random-walk-2D} shows the proportion of returns to the origin and the mean durations for a range of fractions of the limit.
 
 \begin{figure}
 \begin{center}
@@ -340,8 +313,6 @@ The program structure is the same as for the one-dimensional random walk. You ca
 
 The three-dimensional random walk adds a simultaneous step along the $z$-axis with probability $1/2$. The probability of a return to the origin is only $0.2379$ so the simulations will show a large number of simulations reaching the limit:
 
-\newpage
-
 \begin{verbatim}
 Limit                            = 100000
 Proportion returning to origin   = 0.370
@@ -349,11 +320,51 @@ Proportion reaching limit        = 0.630
 Mean duration (steps)            = 63518
 \end{verbatim}
 
+\subsection{Random walk in a circle}
+
+Consider a circle with $n$ equally-spaced points around its circumference (Figure~\ref{f.random-walk-circle}). A random walk starts at point $0$ and proceeds to the next point or the previous point both with probability $1/2$.
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture}
+\draw (0,0) circle[radius=2.5];
+\foreach \angle/\label in
+  {0/3,30/2,60/1,90/0,120/11,150/10,180/9,210/8,240/7,270/6,300/5,330/4} {
+    \fill (\angle:2.5) circle[radius=1.5pt];
+    \node at (\angle:2.8) {$\scriptstyle\label$};
+}
+\node at (334:3.2) {$k$};
+\end{tikzpicture}
+\end{center}
+\caption{Random walk in a circle}\label{f.random-walk-circle}
+\end{figure}
+
+\begin{itemize}
+\item With probability $1$ the all points will be visited.
+\item With probability $1/n$ a designated point $k$ will be the last point visited.
+\end{itemize}
+
+The random walk will eventually visit all points, but it make take a very large number of steps. (Try to run the simulation for $100$ points!) Here is an output:
+\begin{verbatim}
+For 50 points, 1000 simulations, at most 3000 steps:
+  Designated point visited 22 times
+    Probability = 0.020, proportion = 0.022
+  Did not visit all points 26 times
+\end{verbatim}
+The histogram of steps visited is shown Figure~\ref{f.random-walk-circle-histogram}. 
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{random-walk-circle}
+\caption{Histogram of steps until all points are visited}\label{f.random-walk-circle-histogram}
+\end{center}
+\end{figure}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{The Ehrenfest model}\label{s.ehrenfest}
 
-\textbf{Problem} The Ehrenfest model is designed to model diffusion of particles between two containers. In the following diagram there are four particles in the left container and six particles in the right container for a total of $n=10$ particles:
+The Ehrenfest model models the diffusion of particles between two containers. In the following diagram there are $4$ particles in the left container and $6$ in the right container.
 \begin{center}
 \begin{tikzpicture}[scale=1.2]
 \draw (0,0) node {} circle[radius=1.2];
@@ -376,9 +387,7 @@ Mean duration (steps)            = 63518
 \end{scope}
 \end{tikzpicture}
 \end{center}
-Repeated choose a particle at random with uniform distribution and move it to the other container. If there are $i$ particles in the left container then the probability of choosing a particle from the left container is $i/n$ and the probability of choosing a particle from the right container is $(n-i)/n$. If one container is empty the next particle must be chosen from the other container. 
-
-The problem is similar to the gambler's ruin except that: (a) the process never ends and (b) the probability of a left or right step changes with each step:
+Repeatedly choose a particle at random with uniform distribution and move it to the other container. If there are $i$ particles in the left container then the probability of choosing a particle from the left container is $i/n$ and the probability of choosing a particle from the right container is $(n-i)/n$. If one container is empty the next particle must be chosen from the other container. 
 \begin{center}
 \begin{tikzpicture}[scale=1.2]
 \draw (0,0) node[above left] {$A$} -- 
@@ -396,8 +405,7 @@ The problem is similar to the gambler's ruin except that: (a) the process never 
 \draw[<-] (9,7mm) -- node[above] {$1$} +(1,0);
 \end{tikzpicture}
 \end{center}
-
-\subsection{Theoretical results}
+The problem is similar to the gambler's ruin except that the process never ends and the probability of a left or right step changes with each step.
 
 The process is a Markov chain which eventually reaches a \emph{stationary distribution}:
 \[
@@ -405,9 +413,7 @@ s_i=\dischoose{n}{i}\left(\frac{1}{n}\right)^n\,,
 \]
 where $s_i$ is the proportion of time that the particle is at the $i$'th position.
 
-\subsection{Running the simulations}
-
-The program asks the user how to run the simulation: with the saved value of $n$ or with a new value of $n$. Here is an output of the simulation:
+Here is an output of the simulation:
 \begin{verbatim}
 Total particles in urns = 10
 Theoretical stationary distribution
@@ -466,12 +472,9 @@ Theoretical stationary distribution: A = 0.200, B = 0.800
 Simulation  stationary distribution: A = 0.194, B = 0.806
 \end{verbatim}
 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{A maze}\label{maze}
-
-This problem and its solution is presented in \cite[Sections~5.3, 7.2]{privault}.
 
 Given the Markov chain shown in the following diagram, simulate the average number of steps until the first return to state $i$ starting in state $j$.
 \begin{center}
@@ -504,8 +507,7 @@ Given the Markov chain shown in the following diagram, simulate the average numb
   (q9) edge[bend left=25] node {1/3} (q8);
 \end{tikzpicture}
 \end{center}
-
-Privault computes the expected number of returns to state $0$ starting in any other state and the average number of steps in the simulation is very close to to the expected number of returns:
+Privault \cite[Sections~5.3]{privault} computes the expected number of returns to state $0$ starting in any other state and the average number of steps in the simulation is very close to to the expected number of returns:
 \begin{verbatim}
 Expected steps to return to 0 = [16, 15, 28, 59, 48, 39, 58, 55, 56]
 Average  steps to return to 0 = [14, 15, 28, 59, 46, 39, 59, 55, 54]
@@ -521,7 +523,7 @@ Average  steps to return to 6 = [37, 37, 35,  1, 21, 29,  8, 13, 14]
 Average  steps to return to 7 = [25, 23, 21,  4,  9, 16,  3,  5,  1]
 Average  steps to return to 8 = [38, 37, 37, 19, 25, 30, 18, 14, 16]
 \end{verbatim}
-Privault also computes the expected number of returns to state $i$ from state $i$ and the averages (the main diagonal of the above matrix) are very close:
+Privault \cite[Sections~7.2]{privault}also computes the expected number of returns to state $i$ from state $i$ and the averages (the main diagonal of the above matrix) are very close:
 \begin{verbatim}
 Expected steps to return to i from i = [16,  8,  8, 16,  8,  8,  8,  5, 16]
 Average  steps to return to i from i = [14,  8,  8, 15,  7,  7,  8,  5, 16]
