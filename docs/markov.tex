@@ -91,7 +91,7 @@ This work is licensed under Attribution-ShareAlike 4.0 International. To view a 
 
 Simulations are an excellent way of understanding probability, especially the behavior of processes of long duration. Simulation programs enable the user to perform experiments by varying the parameters of problems and analyzing. The simulations in this archive are of processes known as \emph{Markov chains}, where the next state of the system depends only on the current state and not on the history of how the process got to the current state. 
 
-The following problems are simulated: the \emph{gambler's ruin}, one-, two- and three-dimensional \emph{random walk} and random walk in a circle, the \emph{Ehrenfest model}, the \emph{two-state process} and \emph{transversing a maze}.
+The following problems are simulated: gambler's ruin, the ballot box, one-, two- and three-dimensional random walk and random walk in a circle, the Ehrenfest model, the two-state process and transversing a maze.
 
 A knowledge of probability is assumed at the level of the first few chapters of \cite{BW,ross}. The problems and their theoretical solutions are from the works cited in the references.
 
@@ -168,6 +168,30 @@ A graph of the proportion of wins and the histogram of the durations are shown i
 \begin{center}
 \includegraphics[width=\textwidth]{gamblers-ruin-02}
 \caption{Proportion of wins and histogram for $p=0.45, n=20$ and multiple initial values}\label{f.gambler-hist2}
+\end{center}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{The ballot box}\label{s.ballot}
+
+In an election there are two candidates $A$ and $B$.  $A$ receives $a$ votes and $B$ receives $b$ votes where $a>b$. The votes are counted one-by-one and the running totals $(a_i,b_i), 1\leq i \leq a+b$ are updated as each vote is counted. What is the probability that $a_i>b_i$ always holds?
+
+The probability is:
+\[
+P(A \;\textrm{is always leading}) = \disfrac{a-b}{a+b}\,.
+\]
+The result of a simulation is:
+\begin{verbatim}
+For a = 20, b = 18:
+Probability of A always leading = 0.0526
+Proportion  of A always leading = 0.0510
+\end{verbatim}
+A graph of the probability and the proportion of simulations that $A$ is always leading is shown in Figure~\ref{f.ballot-01}. As $b$ gets closer to $a$ the probability decreases since more and more votes for $B$ are available to be counted.
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{ballot-01}
+\caption{Probability and proportion of $A$ always leading}\label{f.ballot-01}
 \end{center}
 \end{figure}
 
@@ -523,7 +547,7 @@ Average  steps to return to 6 = [37, 37, 35,  1, 21, 29,  8, 13, 14]
 Average  steps to return to 7 = [25, 23, 21,  4,  9, 16,  3,  5,  1]
 Average  steps to return to 8 = [38, 37, 37, 19, 25, 30, 18, 14, 16]
 \end{verbatim}
-Privault \cite[Sections~7.2]{privault}also computes the expected number of returns to state $i$ from state $i$ and the averages (the main diagonal of the above matrix) are very close:
+Privault \cite[Sections~7.2]{privault} also computes the expected number of returns to state $i$ from state $i$ and the averages (the main diagonal of the above matrix) are very close:
 \begin{verbatim}
 Expected steps to return to i from i = [16,  8,  8, 16,  8,  8,  8,  5, 16]
 Average  steps to return to i from i = [14,  8,  8, 15,  7,  7,  8,  5, 16]
