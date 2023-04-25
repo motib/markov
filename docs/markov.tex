@@ -553,6 +553,22 @@ Expected steps to return to i from i = [16,  8,  8, 16,  8,  8,  8,  5, 16]
 Average  steps to return to i from i = [14,  8,  8, 15,  7,  7,  8,  5, 16]
 \end{verbatim}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Stationary distribution}\label{stationary}
+
+Let $\pi$ be a probability distribution of the initial state of a Markov chain. Take one step according to the transition matrix. If the probability distribution is still $\pi$, it is the \emph{stationary distribution} of the chain. Clearly, the distribution will remain the same no matter how many steps are taken.
+
+For each step in the simulation the initial state is randomly selected according to the distribution and then the transition matrix is used to compute the next state. A count of the these states is maintained and used to obtain a simulated distribution.
+
+Privault \cite[Sections~7.2]{privault} computes the stationary distribution of the maze and the result of the simulation is very close:
+\begin{verbatim}
+Stationary distribution:
+[0.0625, 0.1250, 0.1250, 0.0625, 0.1250, 0.1250, 0.1250, 0.1875, 0.0625]
+Distribution after first step:
+[0.0626, 0.1277, 0.1269, 0.0612, 0.1248, 0.1261, 0.1240, 0.1883, 0.0584]\end{verbatim}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \addcontentsline{toc}{section}{References}
