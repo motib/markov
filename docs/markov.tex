@@ -93,7 +93,7 @@ Simulations are an excellent way of understanding probability, especially the be
 
 The following problems are simulated: gambler's ruin, the ballot box, one-, two- and three-dimensional random walk and random walk in a circle, the Ehrenfest model, the two-state process and transversing a maze.
 
-A knowledge of probability is assumed at the level of the first few chapters of \cite{BW,ross}. The problems and their theoretical solutions are from the works cited in the references.
+A knowledge of probability is assumed at the level of the first few chapters of \cite{BW,ross}. 
 
 \nocite{*}
 
@@ -157,6 +157,8 @@ Expected duration = 65
 \end{verbatim}
 A graph of the proportion of wins and the histogram of the durations are shown in Figures~\ref{f.gambler-hist1}, \ref{f.gambler-hist2}. The vertical lines in the histograms are the average durations.
 
+\textbf{Sources:} \cite[Chapter 2]{privault}, \cite[Problems 35, 36]{mosteller,mos}, \cite[Example 4m]{ross}, \cite[Example 2.7.3]{BW}, \cite[Section~16.16]{border}, \cite[Section~20.1]{mit-mcs}.
+
 \begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{gamblers-ruin-01}
@@ -188,6 +190,9 @@ Probability of A always leading = 0.0526
 Proportion  of A always leading = 0.0510
 \end{verbatim}
 A graph of the probability and the proportion of simulations that $A$ is always leading is shown in Figure~\ref{f.ballot-01}. As $b$ gets closer to $a$ the probability decreases since more and more votes for $B$ are available to be counted.
+
+\textbf{Sources:} \cite[Problem 22]{mosteller,mos}, \cite[Section 16.3]{border}
+
 \begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{ballot-01}
@@ -276,6 +281,8 @@ The proportion of wins in the simulation are very close to the theoretical proba
 \end{center}
 \end{figure}
 
+\textbf{Sources:} \cite[Chapter 3]{privault}, \cite[Example 3.7.2]{BW}, \cite{border}.
+
 \subsection{Two-dimensional random walk}
 
 In a two-dimensional random walk a step of the particle consists of one step left or right on the $x$-axis with probability $1/2$ and simultaneously one step up or down on the $y$-axis also with probability $1/2$ (Figure~\ref{f.2d-random-walk}).
@@ -333,6 +340,8 @@ Figure~\ref{f.random-walk-2D} shows the proportion of returns to the origin and 
 \end{center}
 \end{figure}
 
+\textbf{Source:} \cite[Problem 51]{mosteller,mos}.
+
 \subsection{Three-dimensional random walk}
 
 The three-dimensional random walk adds a simultaneous step along the $z$-axis with probability $1/2$. The probability of a return to the origin is only $0.2379$ so the simulations will show a large number of simulations reaching the limit:
@@ -343,6 +352,8 @@ Proportion returning to origin   = 0.370
 Proportion reaching limit        = 0.630
 Mean duration (steps)            = 63518
 \end{verbatim}
+
+\textbf{Source:} \cite[Problem 52]{mosteller,mos}.
 
 \subsection{Random walk in a circle}
 
@@ -383,6 +394,7 @@ The histogram of steps visited is shown Figure~\ref{f.random-walk-circle-histogr
 \end{center}
 \end{figure}
 
+\textbf{Source:} \cite[Section 3]{sven}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -447,6 +459,8 @@ Simulation stationary distribution
 \end{verbatim}
 A graph of these distributions is shown in Figure~\ref{f.ehrenfest1}; the theoretical distribution and the result of simulation are so close together that the lines are slightly offset.
 
+\textbf{Sources:} \cite[Example 11.4.6]{BW}, \cite[Section 4.3]{privault}. 
+
 \begin{figure}
 \begin{center}
 \includegraphics[width=\textwidth]{ehrenfest-01}
@@ -495,6 +509,8 @@ Probabilities:  a = 0.600, b = 0.150, proportion = 0.800
 Theoretical stationary distribution: A = 0.200, B = 0.800
 Simulation  stationary distribution: A = 0.194, B = 0.806
 \end{verbatim}
+
+\textbf{Sources:} \cite[Section 4.5]{privault}, \cite[Example 11.1.3]{BW}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -553,6 +569,7 @@ Expected steps to return to i from i = [16,  8,  8, 16,  8,  8,  8,  5, 16]
 Average  steps to return to i from i = [14,  8,  8, 15,  7,  7,  8,  5, 16]
 \end{verbatim}
 
+\textbf{Source:} \cite[Section 5.3]{privault}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -568,6 +585,9 @@ Stationary distribution:
 [0.0625, 0.1250, 0.1250, 0.0625, 0.1250, 0.1250, 0.1250, 0.1875, 0.0625]
 Distribution after first step:
 [0.0626, 0.1277, 0.1269, 0.0612, 0.1248, 0.1261, 0.1240, 0.1883, 0.0584]\end{verbatim}
+
+
+\textbf{Source:} \cite[Section 7.2]{privault}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
