@@ -516,7 +516,7 @@ Simulation  stationary distribution: A = 0.194, B = 0.806
 
 \section{A maze}\label{maze}
 
-Given the Markov chain shown in the following diagram, simulate the average number of steps until the first return to state $i$ starting in state $j$.
+The Markov chain in the following diagram represents a maze since all the transitions are bidirectional:
 \begin{center}
 \begin{tikzpicture}[shorten >=1pt,node distance=2.5cm and 3cm,on grid,auto]
 \node[state] (q1)               {$1$};
@@ -547,6 +547,10 @@ Given the Markov chain shown in the following diagram, simulate the average numb
   (q9) edge[bend left=25] node {1/3} (q8);
 \end{tikzpicture}
 \end{center}
+
+\subsection{Average number of returns}
+What is the average number of steps until the first return to state $i$ starting in state $j$?
+
 Privault \cite[Sections~5.3]{privault} computes the expected number of returns to state $0$ starting in any other state and the average number of steps in the simulation is very close to to the expected number of returns:
 \begin{verbatim}
 Expected steps to return to 0 = [16, 15, 28, 59, 48, 39, 58, 55, 56]
@@ -573,21 +577,58 @@ Average  steps to return to i from i = [14,  8,  8, 15,  7,  7,  8,  5, 16]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Stationary distribution}\label{stationary}
+\subsection{Stationary distribution}\label{stationary}
 
 Let $\pi$ be a probability distribution of the initial state of a Markov chain. Take one step according to the transition matrix. If the probability distribution is still $\pi$, it is the \emph{stationary distribution} of the chain. Clearly, the distribution will remain the same no matter how many steps are taken.
 
 For each step in the simulation the initial state is randomly selected according to the distribution and then the transition matrix is used to compute the next state. A count of the these states is maintained and used to obtain a simulated distribution.
 
-Privault \cite[Sections~7.2]{privault} computes the stationary distribution of the maze and the result of the simulation is very close:
+Privault computes the stationary distribution of the maze and the result of the simulation is very close:
 \begin{verbatim}
 Stationary distribution:
 [0.0625, 0.1250, 0.1250, 0.0625, 0.1250, 0.1250, 0.1250, 0.1875, 0.0625]
 Distribution after first step:
 [0.0626, 0.1277, 0.1269, 0.0612, 0.1248, 0.1261, 0.1240, 0.1883, 0.0584]\end{verbatim}
 
-
 \textbf{Source:} \cite[Section 7.2]{privault}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Branching processes}\label{branching}
+
+A branching process starts out with a single state $\{s_{00}\}$. From that state a random number of level $1$ new states $\{s_{10}, s_{11}, \ldots, s_{}\}$ is created according to some distribution and the initial state is deleted. Recursively and according to the same distribution, a new level is created with a random number of successors to each state at the current level. What is $\mu_n$ the mean number of states $X_n$ at level $n$?
+
+Privault proves that:
+\[
+\mu_n = E(X_n \mid X_0=1) = E(X_1 \mid X_0=1)^n = \mu_1^n\,.
+\]
+The simulation can be run for three distributions:
+\begin{itemize}
+\item Throwing a fair die, expectation $3.5$.
+\item Throwing a fair die until a six is obtained, expectation $6$.
+\item Collecting coupons until all five coupons are collected, expectation:
+\[
+E(\textsf{all}\;n \;\textsf{numbers}) = n\left(\frac{1}{n}+\frac{1}{n-1} + \cdots \frac{1}{2} + \frac{1}{1}\right) =nH_n\approx n\left(\ln n + \frac{1}{2n} + 0.5772\right)\,,
+\]
+where $H_n$ is the $n$-th harmonic number.
+\end{itemize}
+
+\begin{verbatim}
+Throwing a fair die, levels = 4
+Expectation of mean population size: 150
+Simulatation   mean population size: 157
+
+Throwing a die until a six appears, levels = 4
+Expectation of mean population size: 1296
+Simulatation   mean population size: 1228
+
+Coupon collector (five coupons), levels = 4
+Expectation of mean population size: 17087
+Simulatation   mean population size: 17550
+\end{verbatim}
+
+\textbf{Source:} \cite[Section 8.2]{privault}, \cite[Problems~4, 14]{mosteller,mos}.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
