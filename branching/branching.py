@@ -6,12 +6,16 @@
 # Creative Commons Attribution-ShareAlike
 
 import configuration as C
-#import branching_plot as pp
+import branching_plot as bp
 import random
+import numpy as np
 
 # Save parameters between runs
 # Initialize with the defaults
 d_save, l_save = C.DISTRIBUTION_DEFAULT, C.LEVELS_DEFAULT
+
+# Populations from all simulation runs for histogram
+populations = np.zeros(C.SIMS, dtype = int)
 
 # Functions for computing population in the following state
 # Throwing a fair die
@@ -65,12 +69,16 @@ def simulate(distribution, title, expectation, levels):
                     population_of_states += sample2()
             population_at_this_level = population_of_states
         total_population += population_at_this_level
+        populations[n] = population_at_this_level
 
     # Total expectation is the expectation of a single level
     #   raised to the number of levels
-    display_output(title, 
-                   int(expectation ** levels),
-                   total_population // C.SIMS)
+    exp  = int(expectation ** levels)
+    mean = total_population // C.SIMS
+
+    display_output(title, exp, mean)
+    generate_plot(title + ", population at level {:d}".format(l_save),
+                  exp, mean)
 
 def display_output(title, expectation, mean):
     print(title + ", levels = {:d}".format(l_save))
@@ -78,6 +86,12 @@ def display_output(title, expectation, mean):
           format(expectation))
     print("Simulatation   mean population size: {:d}\n".
           format(mean))
+
+def generate_plot(title, exp, mean):
+    global populations
+    fig = bp.init_graph()
+    bp.generate_histogram(populations, exp, mean)
+    bp.finish_graph(fig, title)
 
 # Get new parameters
 # Check for validity of type and range

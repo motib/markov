@@ -91,8 +91,6 @@ This work is licensed under Attribution-ShareAlike 4.0 International. To view a 
 
 Simulations are an excellent way of understanding probability, especially the behavior of processes of long duration. Simulation programs enable the user to perform experiments by varying the parameters of problems and analyzing. The simulations in this archive are of processes known as \emph{Markov chains}, where the next state of the system depends only on the current state and not on the history of how the process got to the current state. 
 
-The following problems are simulated: gambler's ruin, the ballot box, one-, two- and three-dimensional random walk and random walk in a circle, the Ehrenfest model, the two-state process and transversing a maze.
-
 A knowledge of probability is assumed at the level of the first few chapters of \cite{BW,ross}. 
 
 \nocite{*}
@@ -345,6 +343,8 @@ Figure~\ref{f.random-walk-2D} shows the proportion of returns to the origin and 
 \subsection{Three-dimensional random walk}
 
 The three-dimensional random walk adds a simultaneous step along the $z$-axis with probability $1/2$. The probability of a return to the origin is only $0.2379$ so the simulations will show a large number of simulations reaching the limit:
+
+\newpage
 
 \begin{verbatim}
 Limit                            = 100000
@@ -627,10 +627,20 @@ Expectation of mean population size: 17087
 Simulatation   mean population size: 17550
 \end{verbatim}
 
+Figure~\ref{f.branching-01} shows a histogram of the population of the coupon collector at level 3, together with the expectation and the mean.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{branching-01}
+\caption{Histogram of the populations}\label{f.branching-01}
+\end{center}
+\end{figure}
+
 \textbf{Source:} \cite[Section 8.2]{privault}, \cite[Problems~4, 14]{mosteller,mos}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 
 \addcontentsline{toc}{section}{References}
 

@@ -7,7 +7,7 @@
 
 import math
 
-#CLOSE = False
+CLOSE = False
 # False: The plot need not be closed before running again
 #       Does not work is run from Thonny and IDLE
 #         but does work in Visual Studio Code
@@ -53,3 +53,6 @@ LEVELS_DEFAULT = 4
 TITLES = ("Throwing a fair die",
           "Throwing a die until a six appears",
           "Coupon collector (five coupons)")
+
+# Bins
+BINS = 30
