@@ -6,7 +6,7 @@
 # Creative Commons Attribution-ShareAlike
 
 import configuration as C
-import branching_plot as bp
+import population_plot as pp
 import random
 import numpy as np
 
@@ -89,9 +89,9 @@ def display_output(title, expectation, mean):
 
 def generate_plot(title, exp, mean):
     global populations
-    fig = bp.init_graph()
-    bp.generate_histogram(populations, exp, mean)
-    bp.finish_graph(fig, title)
+    fig = pp.init_graph()
+    pp.generate_histogram(populations, exp, mean)
+    pp.finish_graph(fig, title)
 
 # Get new parameters
 # Check for validity of type and range

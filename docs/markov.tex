@@ -509,8 +509,16 @@ Probabilities:  a = 0.600, b = 0.150, proportion = 0.800
 Theoretical stationary distribution: A = 0.200, B = 0.800
 Simulation  stationary distribution: A = 0.194, B = 0.806
 \end{verbatim}
+A plot of the stationary distribution for $A$ and $B$ for fixed $a$ and various values of $b$ is shown in Figure~\ref{f.two-state-01}.
 
 \textbf{Sources:} \cite[Section 4.5]{privault}, \cite[Example 11.1.3]{BW}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{two-state-01}
+\caption{Stationary distribution for the two-state model}\label{f.two-state-01}
+\end{center}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -596,8 +604,11 @@ Distribution after first step:
 
 \section{Branching processes}\label{branching}
 
-A branching process starts out with a single state $\{s_{00}\}$. From that state a random number of level $1$ new states $\{s_{10}, s_{11}, \ldots, s_{}\}$ is created according to some distribution and the initial state is deleted. Recursively and according to the same distribution, a new level is created with a random number of successors to each state at the current level. What is $\mu_n$ the mean number of states $X_n$ at level $n$?
+A branching process starts out with a single state $\{s_{00}\}$. From that state a random number of level $1$ new states $\{s_{10}, s_{11}, \ldots, s_{}\}$ is created according to some distribution and the initial state is deleted. Recursively and according to the same distribution, a new level is created with a random number of successors to each state at the current level.
 
+\subsection{Mean population}
+
+What is $\mu_n$ the mean number of states $X_n$ at level $n$?
 Privault proves that:
 \[
 \mu_n = E(X_n \mid X_0=1) = E(X_1 \mid X_0=1)^n = \mu_1^n\,.
@@ -627,17 +638,45 @@ Expectation of mean population size: 17087
 Simulatation   mean population size: 17550
 \end{verbatim}
 
-Figure~\ref{f.branching-01} shows a histogram of the population of the coupon collector at level 3, together with the expectation and the mean.
+Figure~\ref{f.population-01} shows a histogram of the population of the coupon collector at level 3, together with the expectation and the mean.
 
 \begin{figure}
 \begin{center}
-\includegraphics[width=\textwidth]{branching-01}
-\caption{Histogram of the populations}\label{f.branching-01}
+\includegraphics[width=\textwidth]{population-01}
+\caption{Histogram of the populations}\label{f.population-01}
 \end{center}
 \end{figure}
 
 \textbf{Source:} \cite[Section 8.2]{privault}, \cite[Problems~4, 14]{mosteller,mos}.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Extinction probability}
+
+If a branching process starts with one state, what is $P(E)$ the probability that it will become \emph{extinct}, that is, that the population will become zero. Privault \cite[Section 8.3]{privault} works out two simple cases:
+\begin{itemize}
+\item $P(Y_1=1 \mid X_1=1)=p,\, P(Y_1=0 | X_1=1)=1-p$. Each new level consists of one state with probability $p$, otherwise extinction occurs.
+\item $P(Y_1=2 \mid X_1=1)=p,\, P(Y_1=0 | X_1=1)=1-p$. At each level a state is replaced by two states with probability $p$, otherwise it has no successors.
+\end{itemize}
+The probability for the first case is not interesting: $P(E)=0$ if $p=1$, otherwise $P(E)=1$. For the second case: if $1-p<p$ then $P(E)=(1-p)/p$, otherwise $P(E)=1$.
+
+The choice of the distribution, and theprobability and number of levels can be set interactively. Here is the result of a simulation:
+\begin{verbatim}
+Distribution is P(Y_1=1 | X_1=1)
+Probability = 0.500, levels = 8
+Probability of extinction  = 1.000
+Proportion  of extinctions = 0.990
+\end{verbatim}
+The number of levels should be increased until the proportion approaches the probability. For the second case, the simulation can be run multiple times for various probabilities and the results ploted (Figure~\ref{f.extinction-01}).
+
+\textbf{Source:} \cite[Section 8.3]{privault}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{extinction-01}
+\caption{Probability and proportion of extinction}\label{f.extinction-01}
+\end{center}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
