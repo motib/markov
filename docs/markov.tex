@@ -103,6 +103,8 @@ Parameters directly related to the problems, such as the probability of success,
 
 \section{Gambler's ruin}\label{s.gamblers}
 
+\subsection{Gambler's ruin with no draw}
+
 Two players $A$ and $B$ compete in a contest. There is an initial finite capital of $n$ units: $A$ has $i$ and $B$ has $n-i$. They repeatedly play a game where the probability that $A$ wins is $p$ and the probability that $B$ wins is $q=1-p$. The loser gives one unit to the winner. When one player has all $n$ units the contest is terminated and that player is declared the winner.
 \begin{center}
 \begin{tikzpicture}[scale=1.2]
@@ -170,6 +172,25 @@ A graph of the proportion of wins and the histogram of the durations are shown i
 \caption{Proportion of wins and histogram for $p=0.45, n=20$ and multiple initial values}\label{f.gambler-hist2}
 \end{center}
 \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Gambler's ruin with draw}
+
+The problem can be modified so that the probability that $A$ wins is $p\leq 1/2$, the probability that $B$ wins is also $p$, and the probability that there is a draw and no units are exchanged is $1-2p$. The probability that $A$ wins is now $(n-i)/n$ and the expected duration of the game is:
+\[
+\frac{i(n-i)}{2p}\,.
+\]
+Here is the result of a simulation:
+\begin{verbatim}
+Probability = 0.35, capital = 20, initial = 10
+Wins = 4985, losses = 5014, limits exceeded = 1
+Proportion of wins     = 0.4985
+Probability of winning = 0.5000
+Average duration  = 142
+Expected duration = 142
+\end{verbatim}
+The graphs are the same as for gambler's ruin with no draw.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -343,8 +364,6 @@ Figure~\ref{f.random-walk-2D} shows the proportion of returns to the origin and 
 \subsection{Three-dimensional random walk}
 
 The three-dimensional random walk adds a simultaneous step along the $z$-axis with probability $1/2$. The probability of a return to the origin is only $0.2379$ so the simulations will show a large number of simulations reaching the limit:
-
-\newpage
 
 \begin{verbatim}
 Limit                            = 100000
@@ -521,10 +540,12 @@ A plot of the stationary distribution for $A$ and $B$ for fixed $a$ and various 
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 
 \section{A maze}\label{maze}
 
-The Markov chain in the following diagram represents a maze since all the transitions are bidirectional:
+The Markov chain in Figure~\ref{f.maze} represents a maze since all the transitions are bidirectional.
+\begin{figure}
 \begin{center}
 \begin{tikzpicture}[shorten >=1pt,node distance=2.5cm and 3cm,on grid,auto]
 \node[state] (q1)               {$1$};
@@ -555,6 +576,10 @@ The Markov chain in the following diagram represents a maze since all the transi
   (q9) edge[bend left=25] node {1/3} (q8);
 \end{tikzpicture}
 \end{center}
+\caption{The states and transitions of a maze}\label{f.maze}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Average number of returns}
 What is the average number of steps until the first return to state $i$ starting in state $j$?
@@ -658,7 +683,7 @@ If a branching process starts with one state, what is $P(E)$ the probability tha
 \item $P(Y_1=1 \mid X_1=1)=p,\, P(Y_1=0 | X_1=1)=1-p$. Each new level consists of one state with probability $p$, otherwise extinction occurs.
 \item $P(Y_1=2 \mid X_1=1)=p,\, P(Y_1=0 | X_1=1)=1-p$. At each level a state is replaced by two states with probability $p$, otherwise it has no successors.
 \end{itemize}
-The probability for the first case is not interesting: $P(E)=0$ if $p=1$, otherwise $P(E)=1$. For the second case: if $1-p<p$ then $P(E)=(1-p)/p$, otherwise $P(E)=1$.
+The probability for the first case is not interesting: $P(E)=0$ if $p=1$, otherwise $P(E)=1$. For the second case: if $1-p<p$\footnote{This is the same as $p>1/2$.} then $P(E)=(1-p)/p$, otherwise $P(E)=1$.
 
 The choice of the distribution, and theprobability and number of levels can be set interactively. Here is the result of a simulation:
 \begin{verbatim}
@@ -679,7 +704,6 @@ The number of levels should be increased until the proportion approaches the pro
 \end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 
 \addcontentsline{toc}{section}{References}
 
