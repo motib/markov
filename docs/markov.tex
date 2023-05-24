@@ -192,6 +192,44 @@ Expected duration = 142
 \end{verbatim}
 The graphs are the same as for gambler's ruin with no draw.
 
+\textbf{Source:} \cite[Exercise 2.1 and its solution]{privault}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Multiple gamblers}\label{s.multiple}
+
+Suppose that instead of two gamblers, there are $g$ gamblers who initially arbitrarily divide the total capital among them. At each round two gamblers are chosen at randome and play the game with a probability of $1/2$ of winning. The winner of the round takes one unit from the loser. When a gambler's capital is zero he ceases his participation. On average, how many steps are needed for a single gambler to have all the capital.
+
+In the simulation you can choose the number of gamblers and the total initial capital. This is divided up randomly\footnote{The distribution is not totally random in order to avoid distributions where many gamblers have zero capital.} among the gamblers and the game is played. The expected number of steps is:
+\[
+E(\textsf{steps until winner}) = \left(n^2 - \sum_{i=1}^{g}n_i^2\right)/\:2\,,
+\]
+where $g$ is the number of gamblers, $n$ is the total initial capital and $n_i$ is the initial capital of the $i$'th gambler.
+
+Here is the result of a simulation:
+\begin{verbatim}
+Number of gamblers = 10, capital = 50
+Division of initial capital = [6, 12, 15, 8, 3, 2, 2, 1, 0, 1]  
+Average  number of steps = 939
+Expected number of steps = 1006
+\end{verbatim}
+
+\textbf{Source:} \cite[Chapter~7, example~5i]{ross}.
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{multiple-01}
+\caption{Multiple gamblers with different number of gamblers}\label{f.multiple1}
+\end{center}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\includegraphics[width=\textwidth]{multiple-02}
+\caption{Multiple gamblers with different distribution of the capital}\label{f.multiple2}
+\end{center}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{The ballot box}\label{s.ballot}
